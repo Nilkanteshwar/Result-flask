@@ -127,16 +127,24 @@
           <div class="card text-center border border-dark">
             <div class="card-body">
               <h5 class="card-title">Registration No Here 👇</h5>
-              <form action="/result" method="POST">
+              <form action="/result" method="POST" onsubmit="return numbers()">
                 <p class="card-text">
                   <input
-                    type="number"
+                    type="text"
                     name="regno"
                     id=""
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    oninput="javascript: if (this.value.length > this.minLength) this.value = this.value.slice(0, this.minLength);"
+                    maxlength = "12"
+                    minLength ="12"
+
                     class="form-control text-center border border-dark"
                     placeholder="Enter Your Registration no Here.✔"
+                    ondrop="return false;" onpaste="return false;"
+                    onkeypress="return event.charCode>=48 && event.charCode<=57"
                     required
                   />
+                  <span id="reg" class="text-danger"></span>
                 </p>
                 <button class="btn btn-primary" type="submit">
                   See Your Result
@@ -197,5 +205,13 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+    <script> 
+    function numbers() 
+      {
+        if((regno.length <= 2) || (regno.length > 20)){
+            document.getElementById('reg').innerHTML="username length should be greater than 2 and less than 20";
+            return false;
+
+      }</script>
   </body>
 </html>
